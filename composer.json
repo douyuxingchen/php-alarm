@@ -1,6 +1,6 @@
 {
     "name": "douyuxingchen/php-alarm",
-    "description": "抽象方法飞书告警SDK",
+    "description": "飞书告警SDK",
     "type": "library",
     "require": {
         "php": "^7.2.5|^8.0"
