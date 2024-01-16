@@ -16,7 +16,7 @@ class test{
         $content = implode("\n", $content);
         $time = time();
         $str = $time . "\n" . $signstr;
-        $sign = base64_encode(hash_hmac("sha256", '',$str, true));
+        $sign = base64_encode(hash_hmac("sha256", '',$str, true)); //飞书选用加密签名校验时候用
 
         //设置签名的文本调用方法
 //        $parame = [
