@@ -49,12 +49,11 @@ class FeiShuService
     protected static function postDataTemplate(string $title, string $content): array
     {
         return [
-            'email' => '@qq.com',
             'msg_type' => 'post',
             'content' => [
                 'post' => [
                     'zh_cn' => [
-                        "title" => $title,
+                        "title" => self::getProjectName() . $title,
                         'content' => [
                             [
                                 [
@@ -74,7 +73,23 @@ class FeiShuService
     {
         return [
             'msg_type' => 'text',
-            'content' => ['text' => $content],
+            'content' => ['text' => self::getProjectName() ."\n". $content],
         ];
+    }
+
+    protected static function getProjectName()
+    {
+        switch (env('APP_NAME')) {
+            case 'mapi':
+                return "mapi  ";
+            case 'admin_api':
+                return "admin_api  ";
+            case 'channel_platform':
+                return "channel_platform  ";
+            case 'channel_api':
+                return "channel_api  ";
+            default:
+                return "";
+        }
     }
 }
