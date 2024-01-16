@@ -10,6 +10,8 @@
 
 #### 签名自定义模版调用方式示例
 ```php
+    https://open.feishu.cn/open-apis/bot/v2/hook/cxsdffsdf06e-46b3-4402-aafd5-ce6e30125092
+    $groupId = 'cxsdffsdf06e-46b3-4402-aafd5-ce6e30125092'; 
     $group_id = '';//飞书群组id
     $signstr = '';//签名校验
     $content = [
