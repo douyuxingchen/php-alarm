@@ -2,6 +2,7 @@
 
 namespace Tests;
 
+use Douyuxingchen\PhpAlarm\RemoteRequest\RemoteRequestHandler;
 use Douyuxingchen\PhpAlarm\Service\WeChatService;
 use PHPUnit\Framework\TestCase;
 
@@ -34,5 +35,26 @@ class WeChatTest extends TestCase
 
         // 调用 pushMessage 方法
         $pusherMock->groupIdPushMessageAlarm($groupId, $content, 'text');
+    }
+
+    public function testTry(){
+        //钉钉接入案例
+        $webhook_url = ""; //webhook地址
+        $secret = "";
+        $timestamp = time() * 1000; // 注意：时间戳需要转换为毫秒级
+
+        $stringToSign = $timestamp . "\n" . $secret;
+        $signature = hash_hmac('sha256', $stringToSign,$secret, true);
+        $base64Signature = base64_encode($signature);
+        $urlEncodedSignature = urlencode($base64Signature);
+
+        $messageData = [
+            'msgtype' => 'text',
+            'text' => [
+                'content' => "123asdfsadf",
+            ],
+        ];
+        $webhook_url .= "&timestamp={$timestamp}&sign={$urlEncodedSignature}";
+        RemoteRequestHandler::main('post',$webhook_url,$messageData);
     }
 }
