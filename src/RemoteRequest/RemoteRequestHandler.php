@@ -96,11 +96,10 @@ class RemoteRequestHandler
         $output = curl_exec($curl);
         curl_close($curl);
         $result =  json_decode($output, true);
-        print_r($result);die;
         if(isset($result['code']) && $result['code'] == 0){
             return $result;
         }else{
-            $msg = isset($result['msg']) ? $result['msg'] : '飞书调用报错'.$output;
+            $msg = isset($result['msg']) ? $result['msg'] : '调用报错'.$output;
             throw new \Exception($msg);
         }
     }
